@@ -3,12 +3,14 @@
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { setCookie } from "nookies";
+import Modal from "../components/modal";
 
 export default function Home() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const isDisabled = !email.includes("@") || password.length < 4;
-  const btnState = isDisabled ? "white" : "orange";
   const router = useRouter();
 
   const handleEmailChange = (
@@ -23,24 +25,49 @@ export default function Home() {
     setPassword(event.currentTarget.value);
   };
 
-  const handleSignin = async (): Promise<void> => {
-    if (!email.includes("@") || password.length < 4) {
-    }
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSignin = async () => {
+    // if (!email.includes("@") || password.length < 4) {
+    //   alert("이메일과 비밀번호를 확인하세요.");
+    //   return;
+    // }
+
     try {
-      const response = await axios.post("url", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/login`,
+        {
+          email,
+          password,
+        }
+      );
+      console.log(response);
 
-      const accessToken = response.data.accessToken;
-      localStorage.setItem("accessToken", accessToken);
+      if (response.status === 200) {
+        const tokens = response.data.data;
 
-      router.push("/");
-      console.log("로그인성공");
+        setCookie(null, "accessToken", tokens.accessToken, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+          path: "/",
+        });
+
+        router.push("/");
+        console.log("로그인 성공");
+      } else {
+        console.error("로그인 실패 - 서버 응답이 200이 아님");
+        alert("로그인에 실패했습니다. 다시 시도해주세요.");
+      }
     } catch (error) {
+      console.error("로그인 실패", error);
       alert("이메일 혹은 비밀번호가 다릅니다.");
     }
-    return;
   };
   return (
     <main className="w-full h-full">
@@ -51,7 +78,7 @@ export default function Home() {
             <label className="text-xl font-semibold">ID</label>
             <input
               type="email"
-              placeholder="이메일"
+              placeholder="email"
               value={email}
               onChange={handleEmailChange}
             />
@@ -60,7 +87,7 @@ export default function Home() {
             <label className="text-xl font-semibold">Password</label>
             <input
               type="password"
-              placeholder="비밀번호"
+              placeholder="password"
               value={password}
               onChange={handlePasswordChange}
             />
@@ -68,14 +95,22 @@ export default function Home() {
           <div className="flex justify-center mt-8">
             <button
               onClick={handleSignin}
-              className="bg-orange-400 w-full font-bold"
+              className="bg-orange-400 w-full font-bold h-[30px] rounded-md hover:bg-orange-500"
             >
-              로그인
+              Submit
             </button>
           </div>
           <div className="flex justify-end mt-4">
-            <p className="font-bold text-gray-500">회원가입</p>
+            <p
+              className="font-bold text-gray-500 hover:text-gray-600 hover:cursor-pointer"
+              onClick={handleOpenModal}
+            >
+              회원가입
+            </p>
           </div>
+          {isModalOpen && (
+            <Modal isOpen={isModalOpen} onClose={handleCloseModal} />
+          )}
         </div>
       </div>
     </main>
