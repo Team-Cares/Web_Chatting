@@ -20,6 +20,7 @@ export default function Modal({ isOpen, onClose }: ModalProps) {
   };
 
   const handleUserNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+    //특수 문자, 기호, 숫자 필요
     setUserName(event.currentTarget.value);
   };
 
