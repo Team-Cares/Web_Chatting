@@ -53,8 +53,10 @@ export default function Home() {
         const tokens = response.data.data;
 
         setCookie(null, "accessToken", tokens.accessToken, {
-          httpOnly: true,
-          secure: process.env.NODE_ENV === "production",
+          path: "/",
+        });
+
+        setCookie(null, "refreshToken", tokens.refreshToken, {
           path: "/",
         });
 
