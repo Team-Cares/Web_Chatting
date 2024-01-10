@@ -1,0 +1,55 @@
+"use client";
+
+import { useState } from "react";
+import { FaUserAlt } from "react-icons/fa";
+import FriendModal from "./FriendModal";
+import { FriendData } from "../data/frienddata";
+
+export default function FriendList(friends: any) {
+  const [selectedFriend, setSelectedFriend] = useState<FriendData | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const data = friends.friends;
+
+  const handleFriendClick = (friend: FriendData) => {
+    setSelectedFriend(friend);
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setSelectedFriend(null);
+    setIsModalOpen(false);
+  };
+
+  return (
+    <div className="bg-gray-200 mt-8">
+      <h2 className="text-md font-semibold mb-4 text-gray-500">{`친구 ${data.length}`}</h2>
+      {data?.map((friend: FriendData) => (
+        <div
+          key={friend.friend_id}
+          className="flex items-center mb-6"
+          onClick={() => {
+            handleFriendClick(friend);
+          }}
+        >
+          {friend?.User.profileImgUrl === null ? (
+            <div className="bg-blue-300 w-12 h-12 rounded-full mr-2 flex justify-center items-center text-xl">
+              <FaUserAlt />
+            </div>
+          ) : (
+            <div className="bg-blue-500 w-12 h-12 rounded-full mr-2 flex justify-center items-center text-sm">
+              사진
+            </div>
+          )}
+          <div className="ml-4">
+            <p className="font-semibold">{friend.friend_name}</p>
+            <p className="text-gray-500">{friend.User.email}</p>
+          </div>
+        </div>
+      ))}
+      {isModalOpen && selectedFriend && (
+        <FriendModal friend={selectedFriend} onClose={handleModalClose} />
+      )}
+    </div>
+  );
+}

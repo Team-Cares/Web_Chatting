@@ -6,10 +6,10 @@ import { useState } from "react";
 import { setCookie } from "nookies";
 import Modal from "../components/modal";
 
-export default function Home() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
+export default function Login() {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const isDisabled = !email.includes("@") || password.length < 4;
   const router = useRouter();
 
@@ -47,7 +47,6 @@ export default function Home() {
           password,
         }
       );
-      console.log(response);
 
       if (response.status === 200) {
         const tokens = response.data.data;
@@ -60,7 +59,7 @@ export default function Home() {
           path: "/",
         });
 
-        router.push("/");
+        router.push("/main");
         console.log("로그인 성공");
       } else {
         console.error("로그인 실패 - 서버 응답이 200이 아님");
