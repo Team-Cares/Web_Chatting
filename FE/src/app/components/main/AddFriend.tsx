@@ -9,7 +9,7 @@ interface ModalProps {
   onFriendAdded: any;
 }
 
-export default function RecommendFriend({
+export default function AddFriend({
   isOpen,
   onClose,
   onFriendAdded,

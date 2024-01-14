@@ -1,5 +1,5 @@
 import React from "react";
-import { FriendModalData } from "../data/frienddata";
+import { FriendModalData } from "../../data/frienddata";
 
 export default function FriendModal({ friend, onClose }: FriendModalData) {
   return (

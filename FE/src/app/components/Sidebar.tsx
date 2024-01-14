@@ -7,6 +7,7 @@ import { IoChatbubble } from "react-icons/io5";
 import { LuLogOut } from "react-icons/lu";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import Link from "next/link";
 
 const cookies = new Cookies();
 
@@ -33,13 +34,17 @@ export default function Sidebar() {
     }
   };
   return (
-    <div className="inline-flex flex-col justify-between items-center w-16 bg-gray-400">
+    <div className="inline-flex flex-col justify-between items-center w-[80px] bg-[#fd9644]">
       <ul className="mt-8">
         <div>
-          <FaUserAlt className="mb-8 text-2xl hover:text-gray-700" />
+          <Link href="/main">
+            <FaUserAlt className="mb-8 text-2xl text-[#555555] hover:text-gray-700" />
+          </Link>
         </div>
         <div>
-          <IoChatbubble className="text-2xl hover:text-gray-700" />
+          <Link href="/chat">
+            <IoChatbubble className="text-2xl text-[#555555] hover:text-gray-700" />
+          </Link>
         </div>
       </ul>
       <div className="mb-8 text-2xl hover:text-gray-700" onClick={handleLogout}>

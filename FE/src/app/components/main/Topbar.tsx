@@ -1,8 +1,8 @@
 "use client";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { IoPersonAdd } from "react-icons/io5";
-import RecommendFriend from "./RecommendFriend";
+import AddFriend from "./AddFriend";
 
 interface TopbarProps {
   onSearch: (query: string) => void;
@@ -20,6 +20,12 @@ export default function Topbar({ onSearch, onFriendAdded }: TopbarProps) {
 
   const handleSearchBar = () => {
     setSearch((search) => !search);
+  };
+
+  const handleNotSearch = () => {
+    setQuery("");
+    onSearch("");
+    setSearch(false);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,10 +50,16 @@ export default function Topbar({ onSearch, onFriendAdded }: TopbarProps) {
         <div className="text-lg font-semibold mb-4">친구</div>
         <ul className="flex gap-4">
           <div>
-            <IoSearchOutline className="text-3xl" onClick={handleSearchBar} />
+            <IoSearchOutline
+              className="text-3xl hover:text-orange-400"
+              onClick={handleSearchBar}
+            />
           </div>
           <div>
-            <IoPersonAdd className="text-3xl" onClick={handleOpenModal} />
+            <IoPersonAdd
+              className="text-3xl hover:text-orange-400"
+              onClick={handleOpenModal}
+            />
           </div>
         </ul>
       </div>
@@ -66,10 +78,16 @@ export default function Topbar({ onSearch, onFriendAdded }: TopbarProps) {
           >
             검색
           </button>
+          <button
+            className="text-red-500 px-4 py-2 font-bold"
+            onClick={handleNotSearch}
+          >
+            X
+          </button>
         </div>
       )}
       {isModalOpen && (
-        <RecommendFriend
+        <AddFriend
           isOpen={isModalOpen}
           onClose={handleCloseModal}
           onFriendAdded={handleFriendAdded}

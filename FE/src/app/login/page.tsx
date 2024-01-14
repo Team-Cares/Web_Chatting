@@ -4,7 +4,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { setCookie } from "nookies";
-import Modal from "../components/modal";
+import SignUpModal from "../components/login/SignUpModal";
 
 export default function Login() {
   const [email, setEmail] = useState<string>("");
@@ -110,7 +110,7 @@ export default function Login() {
             </p>
           </div>
           {isModalOpen && (
-            <Modal isOpen={isModalOpen} onClose={handleCloseModal} />
+            <SignUpModal isOpen={isModalOpen} onClose={handleCloseModal} />
           )}
         </div>
       </div>

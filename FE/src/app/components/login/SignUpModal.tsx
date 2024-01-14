@@ -6,7 +6,7 @@ interface ModalProps {
   onClose: () => void;
 }
 
-export default function Modal({ isOpen, onClose }: ModalProps) {
+export default function SignUpModal({ isOpen, onClose }: ModalProps) {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [username, setUserName] = useState<string>("");

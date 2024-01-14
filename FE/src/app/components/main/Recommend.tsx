@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useCookies } from "next-client-cookies";
 import { FaUserAlt } from "react-icons/fa";
-import { recommendFriendData } from "../data/recommend";
+import { recommendFriendData } from "../../data/recommend";
 
 export default function Recommend() {
   const [recommendFriendsData, setRecommendFriendsData] = useState<
@@ -22,7 +22,7 @@ export default function Recommend() {
       .catch((error) => {
         console.error("데이터를 불러오는 중 에러가 발생했습니다.", error);
       });
-  }, []);
+  }, [accessToken]);
 
   const handleRecommendFriendView = () => {
     setRecommendFriendsDataView((view) => !view);
