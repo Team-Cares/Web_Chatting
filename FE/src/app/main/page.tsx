@@ -7,7 +7,9 @@ export default function Main() {
   return (
     <div className="flex w-full h-full">
       <Sidebar />
-      <User />
+      <div className="flex-1 overflow-auto bg-[#FFF8E3]">
+        <User />
+      </div>
     </div>
   );
 }

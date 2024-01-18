@@ -38,9 +38,9 @@ const ChatRoom = ({ roomId }: ChatRoomProps) => {
   }, [roomId, setRoomId, accessToken]);
 
   return (
-    <div className="bg-[#f8dcc0] w-[60%] h-full">
+    <div className="bg-[#F5EEE6] w-[60%] h-full">
       {data && userdata ? (
-        <ChatDataForm data={data} userdata={userdata} />
+        <ChatDataForm data={data} userdata={userdata} roomId={roomId} />
       ) : (
         <NotChatDataForm />
       )}

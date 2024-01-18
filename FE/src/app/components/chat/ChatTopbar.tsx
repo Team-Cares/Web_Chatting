@@ -43,13 +43,13 @@ export default function ChatTopbar({ onSearch, onChatroomCreated }: Props) {
         <ul className="flex gap-4">
           <div>
             <IoSearchOutline
-              className="text-3xl hover:text-orange-400"
+              className="text-3xl hover:text-[#efc6d0]"
               onClick={handleSearchBar}
             />
           </div>
           <div>
             <BiSolidMessageRoundedAdd
-              className="text-3xl hover:text-orange-400"
+              className="text-3xl hover:text-[#efc6d0]"
               onClick={handleCreateChat}
             />
           </div>

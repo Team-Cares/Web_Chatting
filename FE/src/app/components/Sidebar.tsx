@@ -13,6 +13,14 @@ const cookies = new Cookies();
 
 export default function Sidebar() {
   const router = useRouter();
+
+  const handleMain = () => {
+    router.push("/main");
+  };
+
+  const handleChat = () => {
+    router.push("chat");
+  };
   const handleLogout = async () => {
     try {
       const response = await axios.post(
@@ -34,17 +42,17 @@ export default function Sidebar() {
     }
   };
   return (
-    <div className="inline-flex flex-col justify-between items-center w-[80px] bg-[#fd9644]">
+    <div className="inline-flex flex-col justify-between items-center w-[80px] h-full bg-[#efc6d0]">
       <ul className="mt-8">
         <div>
-          <Link href="/main">
+          <button onClick={handleMain}>
             <FaUserAlt className="mb-8 text-2xl text-[#555555] hover:text-gray-700" />
-          </Link>
+          </button>
         </div>
         <div>
-          <Link href="/chat">
+          <button onClick={handleChat}>
             <IoChatbubble className="text-2xl text-[#555555] hover:text-gray-700" />
-          </Link>
+          </button>
         </div>
       </ul>
       <div className="mb-8 text-2xl hover:text-gray-700" onClick={handleLogout}>

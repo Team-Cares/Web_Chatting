@@ -23,7 +23,9 @@ export default function FriendList(friends: any) {
 
   return (
     <div className="mt-8">
-      <h2 className="text-md font-semibold mb-4 text-gray-500">{`친구 ${data.length}`}</h2>
+      <div>
+        <h2 className="text-md font-semibold mb-4 text-gray-500">{`친구 ${data.length}`}</h2>
+      </div>
       {data?.map((friend: FriendData) => (
         <div
           key={friend.friend_id}

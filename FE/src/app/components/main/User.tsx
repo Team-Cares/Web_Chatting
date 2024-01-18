@@ -184,10 +184,10 @@ export default function User() {
   };
 
   return (
-    <div className="bg-[#F2F3F4] p-4 shadow-md w-full h-full pl-8">
+    <div className="bg-[#FFF8E3] p-4 w-full h-full pl-8">
       <Topbar onSearch={handleSearch} onFriendAdded={handleFriendAdded} />
       <div className="flex items-center mb-2">
-        <div className="bg-[#ffeaa7] w-12 h-12 rounded-full mr-2 flex justify-center items-center text-xl">
+        <div className="bg-[#F3D7CA] w-12 h-12 rounded-full mr-2 flex justify-center items-center text-xl">
           <FaUserAlt />
         </div>
         <div className="ml-4">
@@ -196,7 +196,7 @@ export default function User() {
         </div>
       </div>
       <Recommend />
-      <div style={{ overflowY: "auto", maxHeight: "600px" }}>
+      <div className="bg-[#FFF8E3] max-h-[600px] scrollbarHide">
         {searchedFriends.length > 0 ? (
           <FriendList key={triggerRender} friends={searchedFriends} />
         ) : (

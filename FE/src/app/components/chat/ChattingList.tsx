@@ -77,7 +77,7 @@ export default function ChattingList({ onRoomSelect }: Props) {
   };
 
   return (
-    <div className="bg-[#F2F3F4] p-4 shadow-md w-[40%] h-full pl-8">
+    <div className="bg-[#FFF8E3] p-4 shadow-md w-[40%] h-full pl-8">
       <ChatTopbar
         onSearch={handleSearch}
         onChatroomCreated={handleChatroomCreated}
@@ -95,11 +95,11 @@ export default function ChattingList({ onRoomSelect }: Props) {
             >
               {chatdata.Room.Participants[0].User?.profileImgUrl === null ||
               undefined ? (
-                <div className="bg-[#fdcb6e] w-12 h-12 rounded-full mr-2 flex justify-center items-center text-xl">
+                <div className="bg-[#ffeaa7] w-12 h-12 rounded-full mr-2 flex justify-center items-center text-xl">
                   <FaUserAlt />
                 </div>
               ) : (
-                <div className="bg-[#fdcb6e] w-12 h-12 rounded-full mr-2 flex justify-center items-center text-sm">
+                <div className="bg-[#ffeaa7] w-12 h-12 rounded-full mr-2 flex justify-center items-center text-sm">
                   사진
                 </div>
               )}

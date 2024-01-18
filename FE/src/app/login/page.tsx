@@ -71,8 +71,8 @@ export default function Login() {
     }
   };
   return (
-    <main className="w-full h-full">
-      <div className="w-full h-full inline-flex flex-col justify-center items-center">
+    <main className="w-full h-full flex justify-center items-center">
+      <div className="w-[50%] h-[60%] inline-flex flex-col justify-center items-center">
         <div className="text-3xl font-bold p-4 mb-12">LOGIN</div>
         <div className="inline-flex flex-col w-[400px] mb-12">
           <div className="flex justify-between p-4">
@@ -96,7 +96,7 @@ export default function Login() {
           <div className="flex justify-center mt-8">
             <button
               onClick={handleSignin}
-              className="bg-orange-400 w-full font-bold h-[30px] rounded-md hover:bg-orange-500"
+              className="bg-[#FFF8E3] w-full font-bold h-[30px] rounded-md hover:bg-[#fff5d9]"
             >
               Submit
             </button>

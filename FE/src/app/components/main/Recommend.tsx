@@ -39,11 +39,11 @@ export default function Recommend() {
           {recommendFriendsData.map((friend: recommendFriendData) => (
             <div key={friend.user_id} className="flex items-center mb-6">
               {friend.profileImgUrl === null ? (
-                <div className="bg-blue-300 w-12 h-12 rounded-full mr-2 flex justify-center items-center text-xl">
+                <div className="bg-blue-200 w-12 h-12 rounded-full mr-2 flex justify-center items-center text-xl">
                   <FaUserAlt />
                 </div>
               ) : (
-                <div className="bg-blue-500 w-12 h-12 rounded-full mr-2 flex justify-center items-center text-sm">
+                <div className="bg-blue-200 w-12 h-12 rounded-full mr-2 flex justify-center items-center text-sm">
                   사진
                 </div>
               )}
