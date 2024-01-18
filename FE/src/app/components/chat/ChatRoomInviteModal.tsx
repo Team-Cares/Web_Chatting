@@ -38,7 +38,7 @@ export default function ChatRoomInviteModal({
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white p-6 rounded-lg w-[500px]">
         <div className="flex justify-end w-full">
-          <button className="font-bold" onClick={onClose}>
+          <button className="font-bold text-[#BF3131]" onClick={onClose}>
             X
           </button>
         </div>

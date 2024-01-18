@@ -13,11 +13,11 @@ export default function Home() {
       <div className="flex justify-center items-center w-full h-full">
         <div className="inline-flex flex-col justify-center items-center">
           <div>
-            <img src="/mainlogo2.png" className="w-[450px] h-[400px]" />
+            <img src="/mainlogo4.png" className="w-[400px] h-[450px]" />
           </div>
           <div className="font-bold text-3xl my-6">모의 실시간 채팅 서비스</div>
           <button
-            className="bg-[#FFF8E3] text-xl text-gray-700 font-bold w-72 h-12 rounded-md p-2 hover:bg-[#fff5d9]"
+            className="bg-[#f7f1e8] text-xl text-gray-700 font-bold w-72 h-12 rounded-md p-2 hover:bg-[#f2ece2]"
             onClick={handlelRouter}
           >
             로그인 페이지로 이동

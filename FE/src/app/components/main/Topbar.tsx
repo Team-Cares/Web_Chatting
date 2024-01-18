@@ -51,13 +51,13 @@ export default function Topbar({ onSearch, onFriendAdded }: TopbarProps) {
         <ul className="flex gap-4">
           <div>
             <IoSearchOutline
-              className="text-3xl hover:text-[#efc6d0]"
+              className="text-3xl hover:text-[#88AB8E]"
               onClick={handleSearchBar}
             />
           </div>
           <div>
             <IoPersonAdd
-              className="text-3xl hover:text-[#efc6d0]"
+              className="text-3xl hover:text-[#88AB8E]"
               onClick={handleOpenModal}
             />
           </div>
@@ -74,12 +74,12 @@ export default function Topbar({ onSearch, onFriendAdded }: TopbarProps) {
           />
           <button
             onClick={handleSearch}
-            className="bg-blue-500 text-white px-4 py-2 rounded-md"
+            className="bg-[#83A2FF] text-white px-4 py-2 rounded-md hover:bg-[#7b9af8]"
           >
             검색
           </button>
           <button
-            className="text-red-500 px-4 py-2 font-bold"
+            className="text-[#BF3131] px-4 py-2 font-bold"
             onClick={handleNotSearch}
           >
             X

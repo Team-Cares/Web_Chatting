@@ -6,9 +6,22 @@ import { FaUserAlt } from "react-icons/fa";
 import dayjs from "dayjs";
 import ChatTopbar from "./ChatTopbar";
 import { ChatList } from "../../data/chatlist";
+import { Socket } from "socket.io-client";
 
 type Props = {
   onRoomSelect: (roomId: number) => void;
+  latestMessage: {
+    room_id: number;
+    user_id: number;
+    message: string;
+  } | null;
+  socket: Socket | null;
+};
+
+type message = {
+  room_id: number;
+  user_id: number;
+  message: string;
 };
 
 type chatData = {
@@ -25,7 +38,11 @@ type chatData = {
   };
 };
 
-export default function ChattingList({ onRoomSelect }: Props) {
+export default function ChattingList({
+  onRoomSelect,
+  latestMessage,
+  socket,
+}: Props) {
   const [chattingListData, setChattingListData] = useState<ChatList[]>([]);
   const [chattingListLength, setChattingListLength] = useState<number>();
   const [searchedChat, setSearchedChat] = useState<any>([]);
@@ -48,6 +65,27 @@ export default function ChattingList({ onRoomSelect }: Props) {
         console.error("채팅방 정보를 불러오는 중 에러가 발생했습니다.", error);
       });
   }, [accessToken]);
+
+  useEffect(() => {
+    socket?.on("readchat", (receivedReadChatID: any) => {
+      console.log(receivedReadChatID);
+    });
+  }, [socket]);
+
+  useEffect(() => {
+    if (latestMessage && latestMessage.room_id) {
+      setChattingListData((prevData) =>
+        prevData.map((chat) =>
+          chat.room_id === latestMessage.room_id
+            ? {
+                ...chat,
+                Room: { ...chat.Room, last_message: latestMessage.message },
+              }
+            : chat
+        )
+      );
+    }
+  }, [latestMessage]);
 
   const handleChatroomCreated = () => {
     axios
@@ -77,7 +115,7 @@ export default function ChattingList({ onRoomSelect }: Props) {
   };
 
   return (
-    <div className="bg-[#FFF8E3] p-4 shadow-md w-[40%] h-full pl-8">
+    <div className="bg-[#EEE7DA] p-4 shadow-md w-[40%] h-full pl-8">
       <ChatTopbar
         onSearch={handleSearch}
         onChatroomCreated={handleChatroomCreated}
@@ -89,17 +127,17 @@ export default function ChattingList({ onRoomSelect }: Props) {
             <div
               key={chatdata.room_id}
               className={`flex items-center mb-6 ${
-                selectedRoomId === chatdata.room_id ? "bg-[#AED6F1]" : ""
+                selectedRoomId === chatdata.room_id ? "bg-[#f2ebd9]" : ""
               }`}
               onClick={() => handleChatItemClick(chatdata)}
             >
               {chatdata.Room.Participants[0].User?.profileImgUrl === null ||
               undefined ? (
-                <div className="bg-[#ffeaa7] w-12 h-12 rounded-full mr-2 flex justify-center items-center text-xl">
+                <div className="bg-[#a6c0a4] w-12 h-12 rounded-full mr-2 flex justify-center items-center text-xl">
                   <FaUserAlt />
                 </div>
               ) : (
-                <div className="bg-[#ffeaa7] w-12 h-12 rounded-full mr-2 flex justify-center items-center text-sm">
+                <div className="bg-[#a6c0a4] w-12 h-12 rounded-full mr-2 flex justify-center items-center text-sm">
                   사진
                 </div>
               )}
@@ -117,7 +155,7 @@ export default function ChattingList({ onRoomSelect }: Props) {
                   {chatdata.not_read_messageCnt === 0 ? (
                     ""
                   ) : (
-                    <p className="bg-red-600 text-white font-bold rounded-full w-5 h-5 flex justify-center items-center">
+                    <p className="bg-red-600 text-white font-bold rounded-full w-6 h-6 flex justify-center items-center">
                       {chatdata.not_read_messageCnt}
                     </p>
                   )}
@@ -132,17 +170,17 @@ export default function ChattingList({ onRoomSelect }: Props) {
             <div
               key={chatdata.room_id}
               className={`flex items-center mb-6 ${
-                selectedRoomId === chatdata.room_id ? "bg-blue-100" : ""
+                selectedRoomId === chatdata.room_id ? "bg-[#f2ebd9]" : ""
               }`}
               onClick={() => handleChatItemClick(chatdata)}
             >
               {chatdata.Room.Participants[0].User?.profileImgUrl === null ||
               undefined ? (
-                <div className="bg-[#ffeaa7] w-12 h-12 rounded-full mr-2 flex justify-center items-center text-xl">
+                <div className="bg-[#a6c0a4] w-12 h-12 rounded-full mr-2 flex justify-center items-center text-xl">
                   <FaUserAlt />
                 </div>
               ) : (
-                <div className="bg-[#ffeaa7] w-12 h-12 rounded-full mr-2 flex justify-center items-center text-sm">
+                <div className="bg-[#a6c0a4] w-12 h-12 rounded-full mr-2 flex justify-center items-center text-sm">
                   사진
                 </div>
               )}
@@ -160,7 +198,7 @@ export default function ChattingList({ onRoomSelect }: Props) {
                   {chatdata.not_read_messageCnt === 0 ? (
                     ""
                   ) : (
-                    <p className="bg-red-600 text-white font-bold rounded-full w-5 h-5 flex justify-center items-center">
+                    <p className="bg-red-600 text-white font-bold rounded-full w-6 h-6 flex justify-center items-center">
                       {chatdata.not_read_messageCnt}
                     </p>
                   )}

@@ -126,7 +126,7 @@ export default function ChatFriendList({
 
       <div className="flex justify-end">
         <button
-          className="bg-blue-500 text-white font-bold p-2 rounded-lg"
+          className="bg-[#83A2FF] text-white font-bold p-2 rounded-lg hover:bg-[#7b9af8]"
           onClick={handleInviteButtonClick}
         >
           초대

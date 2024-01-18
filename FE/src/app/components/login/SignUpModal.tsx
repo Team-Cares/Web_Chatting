@@ -25,6 +25,19 @@ export default function SignUpModal({ isOpen, onClose }: ModalProps) {
   };
 
   const handleSignup = async () => {
+    if (email === "" || password === "" || username === "") {
+      alert("빈 칸을 입력해주세요");
+      return;
+    }
+    if (!email.includes("@")) {
+      alert("이메일 형식이 올바르지 않습니다.");
+      return;
+    }
+
+    if (!/(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])/g.test(password)) {
+      alert("비밀번호는 문자, 숫자, 특수문자를 모두 포함해야 합니다.");
+      return;
+    }
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/api/auth/signup`,
@@ -59,7 +72,7 @@ export default function SignUpModal({ isOpen, onClose }: ModalProps) {
         <div className="bg-white w-[500px] p-6 rounded-md">
           <div className="flex justify-between items-center border-b pb-4 mb-4">
             <h2 className="text-lg font-semibold">회원가입</h2>
-            <button className="text-red-500 text-2xl" onClick={onClose}>
+            <button className="text-[#BF3131] text-2xl" onClick={onClose}>
               &times;
             </button>
           </div>
@@ -92,6 +105,7 @@ export default function SignUpModal({ isOpen, onClose }: ModalProps) {
               이름
             </label>
             <input
+              type="text"
               value={username}
               onChange={handleUserNameChange}
               className="mt-1 p-2 w-full border rounded-md"
@@ -100,7 +114,7 @@ export default function SignUpModal({ isOpen, onClose }: ModalProps) {
           <div className="flex justify-end">
             <button
               onClick={handleSignup}
-              className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+              className="bg-[#83A2FF] text-white px-4 py-2 rounded-md hover:bg-[#7b9af8]"
             >
               회원가입
             </button>

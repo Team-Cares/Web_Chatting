@@ -43,13 +43,13 @@ export default function ChatTopbar({ onSearch, onChatroomCreated }: Props) {
         <ul className="flex gap-4">
           <div>
             <IoSearchOutline
-              className="text-3xl hover:text-[#efc6d0]"
+              className="text-3xl hover:text-[#88AB8E]"
               onClick={handleSearchBar}
             />
           </div>
           <div>
             <BiSolidMessageRoundedAdd
-              className="text-3xl hover:text-[#efc6d0]"
+              className="text-3xl hover:text-[#88AB8E]"
               onClick={handleCreateChat}
             />
           </div>
@@ -65,13 +65,13 @@ export default function ChatTopbar({ onSearch, onChatroomCreated }: Props) {
             onChange={handleChange}
           />
           <button
-            className="bg-blue-500 text-white px-4 py-2 rounded-md"
+            className="bg-[#83A2FF] text-white px-4 py-2 rounded-md hover:bg-[#7b9af8]"
             onClick={handleSearch}
           >
             검색
           </button>
           <button
-            className="text-red-500 px-4 py-2 font-bold"
+            className="text-[#BF3131] px-4 py-2 font-bold"
             onClick={handleNotSearch}
           >
             X

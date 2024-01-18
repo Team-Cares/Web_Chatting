@@ -35,11 +35,11 @@ export default function FriendList(friends: any) {
           }}
         >
           {friend?.User.profileImgUrl === null ? (
-            <div className="bg-[#ffeaa7] w-12 h-12 rounded-full mr-2 flex justify-center items-center text-xl">
+            <div className="bg-[#a6c0a4] w-12 h-12 rounded-full mr-2 flex justify-center items-center text-xl">
               <FaUserAlt />
             </div>
           ) : (
-            <div className="bg-[#ffeaa7] w-12 h-12 rounded-full mr-2 flex justify-center items-center text-sm">
+            <div className="bg-[#a6c0a4] w-12 h-12 rounded-full mr-2 flex justify-center items-center text-sm">
               사진
             </div>
           )}

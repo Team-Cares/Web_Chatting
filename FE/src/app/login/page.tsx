@@ -34,10 +34,14 @@ export default function Login() {
   };
 
   const handleSignin = async () => {
-    // if (!email.includes("@") || password.length < 4) {
-    //   alert("이메일과 비밀번호를 확인하세요.");
-    //   return;
-    // }
+    if (!email.includes("@")) {
+      alert("이메일을 다시 확인해주세요.");
+      return;
+    }
+    if (!/(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])/g.test(password)) {
+      alert("비밀번호가 틀립니다.");
+      return;
+    }
 
     try {
       const response = await axios.post(
@@ -67,7 +71,7 @@ export default function Login() {
       }
     } catch (error) {
       console.error("로그인 실패", error);
-      alert("이메일 혹은 비밀번호가 다릅니다.");
+      alert("서버와의 연결에 실패하였습니다.");
     }
   };
   return (
@@ -96,7 +100,7 @@ export default function Login() {
           <div className="flex justify-center mt-8">
             <button
               onClick={handleSignin}
-              className="bg-[#FFF8E3] w-full font-bold h-[30px] rounded-md hover:bg-[#fff5d9]"
+              className="bg-[#88AB8E] w-full font-bold h-[30px] rounded-md hover:bg-[#81a888]"
             >
               Submit
             </button>

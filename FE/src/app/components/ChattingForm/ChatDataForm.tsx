@@ -11,7 +11,7 @@ type Props = {
       chat_id: number;
       createdAt: string;
       message: string;
-      npt_read_userCnt: number;
+      not_read_userCnt: number;
       user_id: number;
     }
   ];
@@ -19,6 +19,12 @@ type Props = {
     { user_id: number; username: string; profileImgUrl: string | null }
   ];
   roomId: number | null | undefined;
+  socket: Socket | null;
+  updateLatestMessage: (message: {
+    room_id: number;
+    user_id: number;
+    message: string;
+  }) => void;
 };
 
 interface IMessage {
@@ -27,7 +33,7 @@ interface IMessage {
   user_id: number;
   message: string;
   not_read_userCnt: number;
-  createAt: string;
+  createdAt: string; // 필드 이름 수정
 }
 
 interface readChat {
@@ -35,14 +41,18 @@ interface readChat {
   recent_chat_id: string;
 }
 
-export default function ChatDataForm({ data, userdata, roomId }: Props) {
+export default function ChatDataForm({
+  data,
+  userdata,
+  roomId,
+  socket,
+  updateLatestMessage,
+}: Props) {
   const { payload } = UserData();
   const login_user_id = payload ? payload.user_id : null;
-  const socket = useRef<Socket | null>(null);
   const [inputMessage, setInputMessage] = useState("");
   const [messages, setMessages] = useState<IMessage[]>([]);
   const messageContainerRef = useRef<HTMLDivElement | null>(null); //화면 하단 고정을 위한 변수
-  const [test, setTest] = useState<readChat>();
 
   useEffect(() => {
     if (messageContainerRef.current) {
@@ -50,49 +60,47 @@ export default function ChatDataForm({ data, userdata, roomId }: Props) {
       messageContainerRef.current.scrollTop =
         messageContainerRef.current.scrollHeight;
     }
-    socket.current = io(process.env.NEXT_PUBLIC_SERVER_URL as string, {
-      path: "/socket.io",
-    });
 
-    socket.current.on("connect", () => {
-      console.log("SOCKET CONNECTED!", socket.current?.id);
-      socket.current?.emit("join", { room_id: roomId });
+    const onMessageReceived = (receivedMessage: IMessage) => {
+      console.log("Received message:", receivedMessage);
+      setMessages((prevMessages) => [...prevMessages, receivedMessage]);
+    };
+    socket?.on("send", onMessageReceived);
 
-      const onMessageReceived = (receivedMessage: IMessage) => {
-        console.log("Received message:", receivedMessage);
-        setMessages((prevMessages) => [...prevMessages, receivedMessage]);
-      };
-      socket.current?.on("send", onMessageReceived);
-
-      const readData = {
-        room_id: roomId,
-        user_id: userdata[0]?.user_id,
-        recent_chat_id: combinedMessages.at(-1)?.chat_id, // 가장 최근 메시지 chat_id
-      };
-
-      socket.current?.emit("read", readData);
-
-      socket.current?.on("readchat", (receivedReadChatID: any) => {
-        console.log(receivedReadChatID);
-      });
-    });
+    const readData = {
+      room_id: roomId,
+      user_id: userdata[0]?.user_id,
+      recent_chat_id: combinedMessages.at(-1)?.chat_id, // 가장 최근 메시지 chat_id
+    };
+    socket?.emit("read", readData);
 
     return () => {
-      socket.current?.off("send", onMessageReceived);
-      socket.current?.disconnect();
+      socket?.off("send", onMessageReceived);
     };
+  }, [socket]);
+
+  useEffect(() => {
+    setMessages([]);
   }, [roomId]);
 
   const sortedData = data.sort((a, b) => a.chat_id - b.chat_id); //데이터 chat_id순으로 정렬
   const combinedMessages = [...sortedData, ...messages];
 
   const handleSendMessage = () => {
-    if (inputMessage && socket.current) {
-      socket.current.emit("message", {
+    if (
+      inputMessage &&
+      socket &&
+      roomId !== null &&
+      roomId !== undefined &&
+      login_user_id !== null
+    ) {
+      const newMessage = {
         room_id: roomId,
         user_id: login_user_id,
         message: inputMessage,
-      });
+      };
+      socket.emit("message", newMessage);
+      updateLatestMessage(newMessage);
       setInputMessage("");
     }
   };
@@ -132,11 +140,11 @@ export default function ChatDataForm({ data, userdata, roomId }: Props) {
                       //     alt="프로필"
                       //     className="rounded-full w-12 h-12 object-cover"
                       //   />
-                      <div className="bg-[#ffeaa7] rounded-full flex justify-center items-center text-xl w-12 h-12">
+                      <div className="bg-[#a6c0a4] rounded-full flex justify-center items-center text-xl w-12 h-12">
                         사진있을때
                       </div>
                     ) : (
-                      <div className="bg-[#ffeaa7] rounded-full flex justify-center items-center text-xl w-12 h-12">
+                      <div className="bg-[#a6c0a4] rounded-full flex justify-center items-center text-xl w-12 h-12">
                         <FaUserAlt />
                       </div>
                     )

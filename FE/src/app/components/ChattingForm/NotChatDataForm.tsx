@@ -8,7 +8,7 @@ export default function NotChatDataForm() {
           채팅 데이터가 존재하지 않습니다 😅
         </p>
         <img
-          src="/notdata.png"
+          src="/notdata2.png"
           alt="Chat Icon"
           className="mx-auto w-24 h-24 mb-4"
         />

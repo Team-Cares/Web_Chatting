@@ -5,11 +5,18 @@ import ChatDataForm from "../components/ChattingForm/ChatDataForm";
 import NotChatDataForm from "../components/ChattingForm/NotChatDataForm";
 import { ChatRoomUserData } from "../data/chatRoomUser";
 import { useCookies } from "next-client-cookies";
+import { Socket } from "socket.io-client";
 
 type ChatRoomProps = {
   roomId: number | undefined;
+  socket: Socket | null;
+  updateLatestMessage: (message: {
+    room_id: number;
+    user_id: number;
+    message: string;
+  }) => void;
 };
-const ChatRoom = ({ roomId }: ChatRoomProps) => {
+const ChatRoom = ({ roomId, socket, updateLatestMessage }: ChatRoomProps) => {
   const cookies = useCookies();
   const accessToken = cookies.get("accessToken");
 
@@ -38,9 +45,15 @@ const ChatRoom = ({ roomId }: ChatRoomProps) => {
   }, [roomId, setRoomId, accessToken]);
 
   return (
-    <div className="bg-[#F5EEE6] w-[60%] h-full">
+    <div className="bg-[#F2F1EB] w-[60%] h-full">
       {data && userdata ? (
-        <ChatDataForm data={data} userdata={userdata} roomId={roomId} />
+        <ChatDataForm
+          data={data}
+          userdata={userdata}
+          roomId={roomId}
+          socket={socket}
+          updateLatestMessage={updateLatestMessage}
+        />
       ) : (
         <NotChatDataForm />
       )}

@@ -80,7 +80,7 @@ export default function AddFriend({
         <div className="bg-white w-[500px] p-6 rounded-md">
           <div className="flex justify-between items-center border-b pb-4 mb-4">
             <h2 className="text-lg font-semibold">친구 추가</h2>
-            <button className="text-red-500 text-2xl" onClick={onClose}>
+            <button className="text-[#BF3131] text-2xl" onClick={onClose}>
               &times;
             </button>
           </div>
@@ -143,7 +143,7 @@ export default function AddFriend({
             <div className="flex justify-end">
               {search === "ID" && (
                 <button
-                  className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+                  className="bg-[#83A2FF] text-white px-4 py-2 rounded-md hover:bg-[#7b9af8]"
                   onClick={friendIdAdd}
                 >
                   친구추가
@@ -151,7 +151,7 @@ export default function AddFriend({
               )}
               {search === "Email" && (
                 <button
-                  className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+                  className="bg-[#83A2FF] text-white px-4 py-2 rounded-md hover:bg-[#7b9af8]"
                   onClick={friendEmailAdd}
                 >
                   친구추가
