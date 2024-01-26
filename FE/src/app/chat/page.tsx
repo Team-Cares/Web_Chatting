@@ -7,6 +7,7 @@ import ChatRoom from "../chatroom/page";
 
 export default function Chat() {
   const [selectedRoomId, setSelectedRoomId] = useState(0);
+  const [testRoomId, setTestRoomId] = useState(0);
   const [latestMessage, setLatestMessage] = useState<{
     room_id: number;
     user_id: number;
@@ -15,13 +16,13 @@ export default function Chat() {
   const socket = useRef<Socket | null>(null);
 
   useEffect(() => {
-    // 소켓 연결 초기화
     socket.current = io(process.env.NEXT_PUBLIC_SERVER_URL as string, {
       path: "/socket.io",
     });
 
     return () => {
       if (socket.current) {
+        console.log("연결이 끊겼습니다.");
         socket.current.disconnect();
       }
     };

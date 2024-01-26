@@ -22,6 +22,24 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    // 다른 플러그인
+    function ({ addUtilities }: any) {
+      const newUtilities = {
+        ".scrollbarCustom::-webkit-scrollbar": {
+          width: "12px",
+          height: "12px",
+        },
+        ".scrollbarCustom::-webkit-scrollbar-thumb": {
+          "background-color": "#666",
+          "border-radius": "10px",
+        },
+        ".scrollbarCustom::-webkit-scrollbar-track": {
+          "background-color": "transparent",
+        },
+      };
+      addUtilities(newUtilities, ["responsive", "hover"]);
+    },
+  ],
 };
 export default config;

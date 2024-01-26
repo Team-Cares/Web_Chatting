@@ -36,19 +36,20 @@ export default function ChatRoomInviteModal({
 
   return (
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white p-6 rounded-lg w-[500px]">
+      <div className="bg-white p-6 rounded-lg w-[500px] h-[700px]">
         <div className="flex justify-end w-full">
           <button className="font-bold text-[#BF3131]" onClick={onClose}>
             X
           </button>
         </div>
-
         <div className="font-bold text-gray-400">대화상대 선택</div>
-        <ChatFriendList
-          friends={friendsData}
-          onClose={onClose}
-          onChatroomCreated={onChatroomCreated}
-        />
+        <div className="overflow-y-auto h-[600px] mt-4 scrollbarCustom">
+          <ChatFriendList
+            friends={friendsData}
+            onClose={onClose}
+            onChatroomCreated={onChatroomCreated}
+          />
+        </div>
       </div>
     </div>
   );

@@ -13,8 +13,11 @@ export default function FriendModal({ friend, onClose }: FriendModalData) {
               className="w-20 h-20 rounded-full mb-4"
             />
           ) : (
-            <div className="w-20 h-20 bg-blue-300 rounded-full mb-4 flex items-center justify-center text-xl">
-              {friend.friend_name[0].toUpperCase()}
+            <div className="mb-4 flex justify-center items-center">
+              <img
+                src="/Friend_profile2.png"
+                className="w-20 h-20 rounded-full"
+              />
             </div>
           )}
 

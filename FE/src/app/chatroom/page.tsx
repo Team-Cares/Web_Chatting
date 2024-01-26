@@ -44,8 +44,28 @@ const ChatRoom = ({ roomId, socket, updateLatestMessage }: ChatRoomProps) => {
     fetchUserData();
   }, [roomId, setRoomId, accessToken]);
 
+  useEffect(() => {
+    if (roomId && socket) {
+      const onMessageReceived = (receivedMessage: any) => {
+        if (receivedMessage.room_id === roomId) {
+        }
+      };
+      socket.on("message", onMessageReceived);
+
+      return () => {
+        socket.off("message", onMessageReceived);
+      };
+    }
+  }, [roomId, socket]);
+
+  // useEffect(() => {
+  //   socket?.on("readchat", (receivedReadChatID: any) => {
+  //     console.log("readchat", receivedReadChatID);
+  //   });
+  // }, [socket]);
+
   return (
-    <div className="bg-[#F2F1EB] w-[60%] h-full">
+    <div className="bg-[#f7f5ed] w-[60%] h-full">
       {data && userdata ? (
         <ChatDataForm
           data={data}

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useCookies } from "next-client-cookies";
-import { FaUserAlt } from "react-icons/fa";
+import { MdOutlineAddCircleOutline } from "react-icons/md";
 import { recommendFriendData } from "../../data/recommend";
 
-export default function Recommend() {
+export default function Recommend({ onRefreshFriendsList }) {
   const [recommendFriendsData, setRecommendFriendsData] = useState<
     recommendFriendData[]
   >([]);
@@ -28,6 +28,23 @@ export default function Recommend() {
     setRecommendFriendsDataView((view) => !view);
   };
 
+  const handleRecommendFriendData = async (data) => {
+    const userId = data.user_id;
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/api/friend/${userId}`
+      );
+      console.log("id로 추천친구추가 성공", response.data);
+      //추천친구 추가후 배열 필터링후 추가한 친구 제거 로직
+      setRecommendFriendsData((currentFriends) =>
+        currentFriends.filter((friend) => friend.user_id !== userId)
+      );
+      onRefreshFriendsList();
+    } catch (error) {
+      console.error("id로 추천친구추가 실패", error);
+    }
+  };
+
   return (
     <div className="mt-4">
       <div
@@ -37,19 +54,32 @@ export default function Recommend() {
       {recommendFriendsDataView && (
         <div>
           {recommendFriendsData.map((friend: recommendFriendData) => (
-            <div key={friend.user_id} className="flex items-center mb-6">
-              {friend.profileImgUrl === null ? (
-                <div className="bg-blue-200 w-12 h-12 rounded-full mr-2 flex justify-center items-center text-xl">
-                  <FaUserAlt />
+            <div
+              key={friend.user_id}
+              className="flex items-center justify-between mb-6"
+            >
+              <div className="flex items-center">
+                {friend.profileImgUrl === null ? (
+                  <div className="mr-2 flex justify-center items-center">
+                    <img
+                      src="/Recommend_profile.png"
+                      className="w-12 h-12 rounded-full"
+                    />
+                  </div>
+                ) : (
+                  <div className="bg-blue-200 w-12 h-12 rounded-full mr-2 flex justify-center items-center text-sm">
+                    사진
+                  </div>
+                )}
+                <div className="ml-4">
+                  <p className="font-semibold">{friend.username}</p>
+                  <p className="text-gray-500">{friend.introduce}</p>
                 </div>
-              ) : (
-                <div className="bg-blue-200 w-12 h-12 rounded-full mr-2 flex justify-center items-center text-sm">
-                  사진
-                </div>
-              )}
-              <div className="ml-4">
-                <p className="font-semibold">{friend.username}</p>
-                <p className="text-gray-500">{friend.introduce}</p>
+              </div>
+              <div>
+                <button onClick={(frined) => handleRecommendFriendData(friend)}>
+                  <MdOutlineAddCircleOutline className="text-3xl hover:text-[#88AB8E]" />
+                </button>
               </div>
             </div>
           ))}

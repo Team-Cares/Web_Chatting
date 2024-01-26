@@ -73,7 +73,7 @@ export default function ChatFriendList({
   };
 
   return (
-    <div className="mt-8">
+    <div className="p-2">
       <h2 className="text-md font-semibold mb-4 text-gray-500">{`친구 ${data.length}`}</h2>
       {data?.map((friend: FriendData) => (
         <div
@@ -83,8 +83,11 @@ export default function ChatFriendList({
         >
           <div className="flex">
             {friend?.User.profileImgUrl === null ? (
-              <div className="bg-blue-300 w-12 h-12 rounded-full mr-2 flex justify-center items-center text-xl">
-                <FaUserAlt />
+              <div className="mr-2 flex justify-center items-center">
+                <img
+                  src="/Friend_profile2.png"
+                  className="w-12 h-12 rounded-full"
+                />
               </div>
             ) : (
               <div className="bg-blue-500 w-12 h-12 rounded-full mr-2 flex justify-center items-center text-sm">

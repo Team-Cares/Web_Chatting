@@ -1,146 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { FaUserAlt } from "react-icons/fa";
 import { useCookies } from "next-client-cookies";
 import FriendList from "./FriendList";
 import axios from "axios";
 import Topbar from "./Topbar";
 import Recommend from "./Recommend";
 import { UserData } from "../../data/user";
-
-const dummy = [
-  {
-    friend_id: 2,
-    friend_name: "변경 테스트2",
-    User: {
-      email: "test1@test.com",
-      profileImgUrl: null,
-      backgroundImgUrl: null,
-      introduce: null,
-    },
-  },
-  {
-    friend_id: 3,
-    friend_name: "테스트2",
-    User: {
-      email: "test2@test.com",
-      profileImgUrl: null,
-      backgroundImgUrl: null,
-      introduce: null,
-    },
-  },
-  {
-    friend_id: 4,
-    friend_name: "테스트2",
-    User: {
-      email: "test2@test.com",
-      profileImgUrl: null,
-      backgroundImgUrl: null,
-      introduce: null,
-    },
-  },
-  {
-    friend_id: 5,
-    friend_name: "테스트2",
-    User: {
-      email: "test2@test.com",
-      profileImgUrl: null,
-      backgroundImgUrl: null,
-      introduce: null,
-    },
-  },
-  {
-    friend_id: 6,
-    friend_name: "테스트2",
-    User: {
-      email: "test2@test.com",
-      profileImgUrl: null,
-      backgroundImgUrl: null,
-      introduce: null,
-    },
-  },
-  {
-    friend_id: 7,
-    friend_name: "테스트2",
-    User: {
-      email: "test2@test.com",
-      profileImgUrl: null,
-      backgroundImgUrl: null,
-      introduce: null,
-    },
-  },
-  {
-    friend_id: 8,
-    friend_name: "테스트2",
-    User: {
-      email: "test2@test.com",
-      profileImgUrl: null,
-      backgroundImgUrl: null,
-      introduce: null,
-    },
-  },
-  {
-    friend_id: 9,
-    friend_name: "테스트2",
-    User: {
-      email: "test2@test.com",
-      profileImgUrl: null,
-      backgroundImgUrl: null,
-      introduce: null,
-    },
-  },
-  {
-    friend_id: 10,
-    friend_name: "테스트2",
-    User: {
-      email: "test2@test.com",
-      profileImgUrl: null,
-      backgroundImgUrl: null,
-      introduce: null,
-    },
-  },
-  {
-    friend_id: 11,
-    friend_name: "테스트2",
-    User: {
-      email: "test2@test.com",
-      profileImgUrl: null,
-      backgroundImgUrl: null,
-      introduce: null,
-    },
-  },
-  {
-    friend_id: 12,
-    friend_name: "테스트2",
-    User: {
-      email: "test2@test.com",
-      profileImgUrl: null,
-      backgroundImgUrl: null,
-      introduce: null,
-    },
-  },
-  {
-    friend_id: 13,
-    friend_name: "테스트2",
-    User: {
-      email: "test2@test.com",
-      profileImgUrl: null,
-      backgroundImgUrl: null,
-      introduce: null,
-    },
-  },
-  {
-    friend_id: 14,
-    friend_name: "테스트2",
-    User: {
-      email: "test2@test.com",
-      profileImgUrl: null,
-      backgroundImgUrl: null,
-      introduce: null,
-    },
-  },
-];
 
 export default function User() {
   const [userData, setUserData] = useState<UserData | undefined>(undefined);
@@ -183,24 +49,35 @@ export default function User() {
     setTriggerRender((prev) => !prev);
   };
 
+  const refreshFriendsList = () => {
+    axios
+      .get(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/friend/me`)
+      .then((response) => {
+        setFriendsData(response.data.data.rows);
+      })
+      .catch((error) => {
+        console.error("친구 목록을 불러오는 중 에러가 발생했습니다.", error);
+      });
+  };
+
   return (
-    <div className="bg-[#EEE7DA] p-4 w-full h-full pl-8">
+    <div className="bg-[#f3f0e9] p-4 w-full h-full pl-8">
       <Topbar onSearch={handleSearch} onFriendAdded={handleFriendAdded} />
       <div className="flex items-center mb-2">
-        <div className="bg-[#AFC8AD] w-12 h-12 rounded-full mr-2 flex justify-center items-center text-xl">
-          <FaUserAlt />
+        <div className="mr-2 flex justify-center items-center">
+          <img src="/My_profile.png" className="w-12 h-12 rounded-full" />
         </div>
         <div className="ml-4">
           <p className="font-semibold">{userData?.username}</p>
           <p className="text-gray-500">{userData?.email}</p>
         </div>
       </div>
-      <Recommend />
-      <div className="bg-[#EEE7DA] max-h-[600px] scrollbarHide">
+      <Recommend onRefreshFriendsList={refreshFriendsList} />
+      <div className="bg-[#f3f0e9] max-h-[600px] scrollbarHide">
         {searchedFriends.length > 0 ? (
           <FriendList key={triggerRender} friends={searchedFriends} />
         ) : (
-          <FriendList key={triggerRender} friends={dummy} />
+          <FriendList key={triggerRender} friends={friendsData} />
         )}
       </div>
     </div>

@@ -76,8 +76,9 @@ export default function Login() {
   };
   return (
     <main className="w-full h-full flex justify-center items-center">
-      <div className="w-[50%] h-[60%] inline-flex flex-col justify-center items-center">
-        <div className="text-3xl font-bold p-4 mb-12">LOGIN</div>
+      <div className="inline-flex flex-col justify-center items-center">
+        <div className="text-3xl font-bold p-4 mb-6">LOGIN</div>
+        <div className="w- h-1 bg-[#81a888] mb-6"></div>
         <div className="inline-flex flex-col w-[400px] mb-12">
           <div className="flex justify-between p-4">
             <label className="text-xl font-semibold">ID</label>
