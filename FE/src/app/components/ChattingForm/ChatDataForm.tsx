@@ -3,7 +3,6 @@ import { UserData } from "@/app/data/user";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 import React, { useEffect, useRef, useState } from "react";
-import { FaUserAlt } from "react-icons/fa";
 import { Socket } from "socket.io-client";
 
 type Props = {
@@ -81,8 +80,9 @@ export default function ChatDataForm({
 
     return () => {
       socket?.off("readchat", onReadChat);
+      socket?.off("read", readData);
     };
-  }, [socket, combinedMessages, roomId]);
+  }, [combinedMessages]);
 
   useEffect(() => {
     const onMessageReceived = (receivedMessage: IMessage) => {
@@ -135,7 +135,7 @@ export default function ChatDataForm({
     setTimeout(() => {
       messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, 100);
-    setMessages([]);
+    // setMessages([]);
   }, [roomId]);
 
   useEffect(() => {
@@ -166,8 +166,7 @@ export default function ChatDataForm({
   };
 
   dayjs.locale("ko");
-  const isSameDay = (date1, date2) => {
-    // 날짜 표시선 함수
+  const isSameDay = (date1: string, date2: string) => {
     return (
       dayjs(date1).format("YYYY-MM-DD") === dayjs(date2).format("YYYY-MM-DD")
     );

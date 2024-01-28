@@ -58,12 +58,6 @@ const ChatRoom = ({ roomId, socket, updateLatestMessage }: ChatRoomProps) => {
     }
   }, [roomId, socket]);
 
-  // useEffect(() => {
-  //   socket?.on("readchat", (receivedReadChatID: any) => {
-  //     console.log("readchat", receivedReadChatID);
-  //   });
-  // }, [socket]);
-
   return (
     <div className="bg-[#f7f5ed] w-[60%] h-full">
       {data && userdata ? (

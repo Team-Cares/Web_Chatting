@@ -16,12 +16,12 @@ type Props = {
     message: string;
   } | null;
   socket: Socket | null;
-};
-
-type message = {
-  room_id: number;
-  user_id: number;
-  message: string;
+  latestNewMessage: {
+    room_id: number;
+    user_id: number;
+    message: string;
+  } | null;
+  loginUserId: number | null;
 };
 
 type chatData = {
@@ -48,6 +48,8 @@ export default function ChattingList({
   onRoomSelect,
   latestMessage,
   socket,
+  latestNewMessage,
+  loginUserId,
 }: Props) {
   const [chattingListData, setChattingListData] = useState<ChatList[]>([]);
   const [chattingListLength, setChattingListLength] = useState<number>();
@@ -102,6 +104,28 @@ export default function ChattingList({
     }
   }, [selectedRoomId]);
 
+  // 상대방 메시지 채팅방 목록 즉각 적용
+  useEffect(() => {
+    if (latestNewMessage) {
+      setChattingListData((prevChattingListData) =>
+        prevChattingListData.map((chat) =>
+          chat.room_id === latestNewMessage.room_id
+            ? {
+                ...chat,
+                Room: {
+                  ...chat.Room,
+                  last_message: latestNewMessage.message,
+                },
+                not_read_messageCnt:
+                  latestNewMessage.user_id !== loginUserId
+                    ? (chat.not_read_messageCnt || 0) + 1
+                    : chat.not_read_messageCnt,
+              }
+            : chat
+        )
+      );
+    }
+  }, [latestNewMessage, loginUserId]);
   const handleChatroomCreated = () => {
     axios
       .get(
@@ -130,6 +154,14 @@ export default function ChattingList({
       socket?.emit("leave", { room_id: selectedRoomId });
     }
     setSelectedRoomId(chatdata.room_id);
+
+    setChattingListData((prevData) =>
+      prevData.map((chat) =>
+        chat.room_id === chatdata.room_id
+          ? { ...chat, not_read_messageCnt: 0 }
+          : chat
+      )
+    );
   };
 
   // 채팅방 나가기
@@ -259,10 +291,13 @@ export default function ChattingList({
                 </ul>
                 <ul className="flex justify-between items-center">
                   <p className="text-gray-500">{chatdata.Room.last_message}</p>
-                  {chatdata.not_read_messageCnt > 0 && (
+                  {chatdata.not_read_messageCnt &&
+                  chatdata.not_read_messageCnt > 0 ? (
                     <p className="bg-red-600 text-white font-bold rounded-full w-6 h-6 flex justify-center items-center">
                       {chatdata.not_read_messageCnt}
                     </p>
+                  ) : (
+                    ""
                   )}
                 </ul>
               </div>
