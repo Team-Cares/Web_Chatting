@@ -1,7 +1,10 @@
 # Web_Chatting
 1. 프로젝트 이미지 or 로고
+![logo-modified](https://github.com/Dejong1706/MyBlog/assets/75114974/2f70e4fc-b806-41f2-b2f8-d06da6177b60)
 2. 프로젝트 제목
+     - Web-Chatting
 3. 개발 기간
+     - 24.01.01 ~ 
 4. 기술 스택 (버전 무조건 명시)
      - FE
        - 라이브러리
