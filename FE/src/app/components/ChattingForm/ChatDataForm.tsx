@@ -188,7 +188,7 @@ export default function ChatDataForm({
               {showDateLine && (
                 <div className="flex items-center justify-center my-2">
                   <div className="flex-1 border-t border-gray-400"></div>
-                  <p className="mx-2 text-center">
+                  <p className="mx-2 text-center sm:text-xs">
                     {dayjs(messageData.createdAt).format(
                       "YYYY년 MM월 DD일 dddd"
                     )}
@@ -217,14 +217,14 @@ export default function ChatDataForm({
                           <div className="flex justify-center items-center">
                             <img
                               src="/Friend_profile2.png"
-                              className="w-12 h-12 rounded-full"
+                              className="w-12 h-12 rounded-full sm:w-10 sm:h-10"
                             />
                           </div>
                         )
                       ) : (
                         "로딩 중..."
                       )}
-                      <div className="text-xs text-gray-500 mt-2">
+                      <div className="text-xs text-gray-500 mt-2 sm:text-[10px]">
                         {userdata && Array.isArray(userdata)
                           ? userdata.find(
                               (user) => user.user_id === messageData.user_id
@@ -293,7 +293,7 @@ export default function ChatDataForm({
           );
         })}
       </div>
-      <div className="flex p-3 border-t border-gray-200">
+      <div className="flex p-3 border-t border-gray-200 sm:h-16">
         <input
           type="text"
           placeholder="메시지 입력..."
@@ -302,7 +302,7 @@ export default function ChatDataForm({
           className="flex-grow rounded-full border-gray-300 px-4 py-2 mr-2 focus:outline-none"
         />
         <button
-          className="bg-blue-500 text-white rounded-full px-6 py-2"
+          className="bg-blue-500 text-white rounded-full px-6 py-2 sm:text-[10px] sm:px-2"
           onClick={handleSendMessage}
         >
           보내기

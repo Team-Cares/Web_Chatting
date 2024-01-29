@@ -46,7 +46,7 @@ export default function Topbar({ onSearch, onFriendAdded }: TopbarProps) {
 
   return (
     <div>
-      <div className="w-full flex justify-between items-center">
+      <div className="w-full flex justify-between items-center px-2 sm:px-4">
         <div className="text-lg font-semibold mb-4">친구</div>
         <ul className="flex gap-4">
           <div>
@@ -64,22 +64,22 @@ export default function Topbar({ onSearch, onFriendAdded }: TopbarProps) {
         </ul>
       </div>
       {search && (
-        <div className="flex items-center mt-4 mb-6">
+        <div className="flex flex-wrap items-center mt-4 mb-6 sm:justify-end">
           <input
             type="text"
             placeholder="친구 검색..."
-            className="flex-grow p-2 border border-gray-300 rounded-md mr-4"
+            className="flex-grow p-2 border border-gray-300 rounded-md mr-2 sm:mr-4 sm:mb-2"
             value={query}
             onChange={handleChange}
           />
           <button
             onClick={handleSearch}
-            className="bg-[#83A2FF] text-white px-4 py-2 rounded-md hover:bg-[#7b9af8]"
+            className="bg-[#83A2FF] text-white px-4 py-2 sm:px-4 sm:py-2 rounded-md hover:bg-[#7b9af8]"
           >
             검색
           </button>
           <button
-            className="text-[#BF3131] px-4 py-2 font-bold"
+            className="text-[#BF3131] px-2 py-1 sm:px-4 sm:py-2 font-bold"
             onClick={handleNotSearch}
           >
             X

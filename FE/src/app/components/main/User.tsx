@@ -65,7 +65,10 @@ export default function User() {
       <Topbar onSearch={handleSearch} onFriendAdded={handleFriendAdded} />
       <div className="flex items-center mb-2">
         <div className="mr-2 flex justify-center items-center">
-          <img src="/My_profile.png" className="w-12 h-12 rounded-full" />
+          <img
+            src="/My_profile.png"
+            className="w-12 h-12 rounded-full sm:w-10 sm:h-10"
+          />
         </div>
         <div className="ml-4">
           <p className="font-semibold">{userData?.username}</p>

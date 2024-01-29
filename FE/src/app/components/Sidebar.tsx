@@ -46,12 +46,12 @@ export default function Sidebar() {
       <ul className="mt-8">
         <div>
           <button onClick={handleMain}>
-            <FaUserAlt className="mb-8 text-2xl text-[#555555] hover:text-gray-700" />
+            <FaUserAlt className="mb-8 text-2xl text-[#555555] hover:text-gray-700 sm:text-lg" />
           </button>
         </div>
         <div>
           <button onClick={handleChat}>
-            <IoChatbubble className="text-2xl text-[#555555] hover:text-gray-700" />
+            <IoChatbubble className="text-2xl text-[#555555] hover:text-gray-700 sm:text-lg" />
           </button>
         </div>
       </ul>
