@@ -239,15 +239,19 @@ export default function ChattingList({
               )}
               <div className="ml-4 flex-col justify-between w-full">
                 <ul className="flex justify-between items-center">
-                  <p className="font-semibold">{chatdata.room_title}</p>
-                  <p className="text-gray-500">
+                  <p className="font-semibold sm:text-sm">
+                    {chatdata.room_title}
+                  </p>
+                  <p className="text-gray-500 sm:text-xs">
                     {dayjs(chatdata.updatedAt).isSame(dayjs(), "day")
                       ? dayjs(chatdata.updatedAt).format("HH:mm")
                       : dayjs(chatdata.updatedAt).format("YYYY-MM-DD")}
                   </p>
                 </ul>
                 <ul className="flex justify-between items-center">
-                  <p className="text-gray-500">{chatdata.Room.last_message}</p>
+                  <p className="text-gray-500 sm:text-xs">
+                    {chatdata.Room.last_message}
+                  </p>
                   {chatdata.not_read_messageCnt === 0 ? (
                     ""
                   ) : (
@@ -288,15 +292,19 @@ export default function ChattingList({
               )}
               <div className="ml-4 flex-col justify-between w-full">
                 <ul className="flex justify-between items-center">
-                  <p className="font-semibold">{chatdata.room_title}</p>
-                  <p className="text-gray-500">
+                  <p className="font-semibold sm:text-sm">
+                    {chatdata.room_title}
+                  </p>
+                  <p className="text-gray-500 sm:text-xs">
                     {dayjs(chatdata.updatedAt).isSame(dayjs(), "day")
                       ? dayjs(chatdata.updatedAt).format("HH:mm")
                       : dayjs(chatdata.updatedAt).format("YYYY-MM-DD")}
                   </p>
                 </ul>
                 <ul className="flex justify-between items-center">
-                  <p className="text-gray-500">{chatdata.Room.last_message}</p>
+                  <p className="text-gray-500 sm:text-xs">
+                    {chatdata.Room.last_message}
+                  </p>
                   {chatdata.not_read_messageCnt &&
                   chatdata.not_read_messageCnt > 0 ? (
                     <p className="bg-red-600 text-white font-bold rounded-full w-6 h-6 flex justify-center items-center">

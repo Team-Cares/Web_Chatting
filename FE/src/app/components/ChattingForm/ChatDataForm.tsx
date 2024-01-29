@@ -233,7 +233,7 @@ export default function ChatDataForm({
                       </div>
                     </div>
                     <div
-                      className={`rounded-lg px-4 py-2 text-sm ${"bg-white"}`}
+                      className={`rounded-lg px-4 py-2 text-sm ${"bg-white"} sm:text-xs`}
                     >
                       {messageData.message}
                     </div>
@@ -246,7 +246,7 @@ export default function ChatDataForm({
                         </div>
                       )}
                       <div>
-                        <p className="text-gray-500 ml-2 text-[13px]">
+                        <p className="text-gray-500 ml-2 text-[13px] sm:text-xs">
                           {dayjs(messageData.createdAt)
                             .format("A HH:mm")
                             .replace("AM", "오전")
@@ -269,7 +269,7 @@ export default function ChatDataForm({
                         )}
                       </div>
                       <div>
-                        <p className="text-gray-500 ml-2 text-[13px] mr-2">
+                        <p className="text-gray-500 ml-2 text-[13px] mr-2 sm:text-xs">
                           {dayjs(messageData.createdAt)
                             .format("A HH:mm")
                             .replace("AM", "오전")
@@ -280,7 +280,7 @@ export default function ChatDataForm({
 
                     <div>
                       <div
-                        className={`rounded-lg px-4 py-2 text-sm bg-[#4b7bec] text-white`}
+                        className={`rounded-lg px-4 py-2 text-sm bg-[#4b7bec] text-white sm:text-xs`}
                       >
                         {messageData.message}
                       </div>
