@@ -229,7 +229,7 @@ export default function ChattingList({
                 <div className="mr-2 flex justify-center items-center">
                   <img
                     src="/Friend_profile2.png"
-                    className="w-12 h-12 rounded-full"
+                    className="w-12 h-12 rounded-full sm:w-10 sm:h-10"
                   />
                 </div>
               ) : (
@@ -278,7 +278,7 @@ export default function ChattingList({
                 <div className="mr-2 flex justify-center items-center">
                   <img
                     src="/Friend_profile2.png"
-                    className="w-12 h-12 rounded-full"
+                    className="w-12 h-12 rounded-full sm:w-10 sm:h-10"
                   />
                 </div>
               ) : (

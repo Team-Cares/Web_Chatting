@@ -42,7 +42,7 @@ export default function Sidebar() {
     }
   };
   return (
-    <div className="inline-flex flex-col justify-between items-center w-[80px] h-full bg-[#6da076]">
+    <div className="inline-flex flex-col justify-between items-center w-[80px] h-full bg-[#6da076] sm:w-[60px]">
       <ul className="mt-8">
         <div>
           <button onClick={handleMain}>

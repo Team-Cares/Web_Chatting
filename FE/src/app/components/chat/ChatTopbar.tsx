@@ -60,18 +60,20 @@ export default function ChatTopbar({ onSearch, onChatroomCreated }: Props) {
           <input
             type="text"
             placeholder="채팅방 제목 검색..."
-            className="flex-grow p-2 border border-gray-300 rounded-md mr-4"
+            className="flex-grow p-2 border border-gray-300 rounded-md mr-4 sm:w-32 md:w-48 lg:w-64"
             value={query}
             onChange={handleChange}
           />
+
           <button
-            className="bg-[#83A2FF] text-white px-4 py-2 rounded-md hover:bg-[#7b9af8] md:w-20 md:h-8 md:px-0 md:py-0"
+            className="bg-[#83A2FF] text-white sm:px-1 sm:py-1 md:px-2 md:py-2 lg:px-4 lg:py-2 rounded-md hover:bg-[#7b9af8]"
             onClick={handleSearch}
           >
             검색
           </button>
+
           <button
-            className="text-[#BF3131] px-4 py-2 font-bold"
+            className="text-[#BF3131] sm:px-1 sm:py-1 md:px-2 md:py-2 lg:px-4 lg:py-2 font-bold sm:ml-1"
             onClick={handleNotSearch}
           >
             X

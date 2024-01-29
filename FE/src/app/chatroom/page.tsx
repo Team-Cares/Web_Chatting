@@ -65,7 +65,7 @@ const ChatRoom = ({
   }, [roomId, socket]);
 
   return (
-    <div className={`bg-[#f7f5ed] w-[60%] h-full ${className}`}>
+    <div className={`bg-[#f7f5ed] w-[60%] h-full ${className} sm:bg-[#f3f7ed]`}>
       {data && userdata ? (
         <ChatDataForm
           data={data}
