@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useCookies } from "next-client-cookies";
-import { FaUserAlt } from "react-icons/fa";
 import { FriendData } from "../../data/frienddata";
 import axios from "axios";
 
@@ -24,6 +23,10 @@ export default function ChatFriendList({
   const data = friends;
 
   const handleInviteButtonClick = () => {
+    if (selectedFriends.length === 0) {
+      alert("초대할 친구를 선택해주세요.");
+      return;
+    }
     const selectedFriendsData = {
       title,
       members: selectedFriends.map((friend) => ({

@@ -4,7 +4,18 @@ import { useCookies } from "next-client-cookies";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
 import { recommendFriendData } from "../../data/recommend";
 
-export default function Recommend({ onRefreshFriendsList }) {
+type data = {
+  introduce: string | null;
+  profileImgUrl: string | null;
+  user_id: number;
+  username: string;
+};
+
+interface RecommendProps {
+  onRefreshFriendsList: () => void;
+}
+
+export default function Recommend({ onRefreshFriendsList }: RecommendProps) {
   const [recommendFriendsData, setRecommendFriendsData] = useState<
     recommendFriendData[]
   >([]);
@@ -28,7 +39,7 @@ export default function Recommend({ onRefreshFriendsList }) {
     setRecommendFriendsDataView((view) => !view);
   };
 
-  const handleRecommendFriendData = async (data) => {
+  const handleRecommendFriendData = async (data: data) => {
     const userId = data.user_id;
     try {
       const response = await axios.post(

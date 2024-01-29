@@ -65,7 +65,7 @@ export default function ChatTopbar({ onSearch, onChatroomCreated }: Props) {
             onChange={handleChange}
           />
           <button
-            className="bg-[#83A2FF] text-white px-4 py-2 rounded-md hover:bg-[#7b9af8]"
+            className="bg-[#83A2FF] text-white px-4 py-2 rounded-md hover:bg-[#7b9af8] md:w-20 md:h-8 md:px-0 md:py-0"
             onClick={handleSearch}
           >
             검색

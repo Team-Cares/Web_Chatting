@@ -10,7 +10,6 @@ export default function Login() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const isDisabled = !email.includes("@") || password.length < 4;
   const router = useRouter();
 
   const handleEmailChange = (

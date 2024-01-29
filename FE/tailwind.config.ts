@@ -20,6 +20,11 @@ const config: Config = {
         "scrollbar-width": "none",
         "-ms-overflow-style": "none",
       },
+      screens: {
+        sm: { min: "390px", max: "767px" },
+        md: { min: "768px", max: "1023px" },
+        lg: { min: "1024px" },
+      },
     },
   },
   plugins: [

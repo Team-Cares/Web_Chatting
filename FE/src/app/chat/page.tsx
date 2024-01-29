@@ -5,6 +5,8 @@ import Sidebar from "../components/Sidebar";
 import ChattingList from "../components/chat/ChattingList";
 import ChatRoom from "../chatroom/page";
 import { UserData } from "../data/user";
+import { useCookies } from "next-client-cookies";
+import { useRouter } from "next/navigation";
 
 interface newMessage {
   room_id: number;
@@ -15,7 +17,7 @@ interface newMessage {
 export default function Chat() {
   const { payload } = UserData();
   const login_user_id = payload ? payload.user_id : null;
-  const [selectedRoomId, setSelectedRoomId] = useState(0);
+  const [selectedRoomId, setSelectedRoomId] = useState<number>(0);
   const [newMessage, setNewMessage] = useState<newMessage | null>(null);
   const [latestMessage, setLatestMessage] = useState<{
     room_id: number;
@@ -23,6 +25,15 @@ export default function Chat() {
     message: string;
   } | null>(null);
   const socket = useRef<Socket | null>(null);
+  const router = useRouter();
+  const cookies = useCookies();
+  const accessToken = cookies.get("accessToken");
+
+  useEffect(() => {
+    if (!accessToken) {
+      router.push("/login");
+    }
+  }, [router]);
 
   useEffect(() => {
     socket.current = io(process.env.NEXT_PUBLIC_SERVER_URL as string, {
@@ -73,18 +84,22 @@ export default function Chat() {
   return (
     <div className="flex w-full h-full">
       <Sidebar />
-      <ChattingList
-        onRoomSelect={setSelectedRoomId}
-        latestMessage={latestMessage}
-        socket={socket.current}
-        loginUserId={login_user_id}
-        latestNewMessage={newMessage}
-      />
-      <ChatRoom
-        roomId={selectedRoomId}
-        socket={socket.current}
-        updateLatestMessage={updateLatestMessage}
-      />
+      <div className="flex w-full h-full sm:flex-col">
+        <ChattingList
+          className="sm:h-1/2 sm:w-full"
+          onRoomSelect={setSelectedRoomId}
+          latestMessage={latestMessage}
+          socket={socket.current}
+          loginUserId={login_user_id}
+          latestNewMessage={newMessage}
+        />
+        <ChatRoom
+          className="sm:h-1/2 sm:w-full"
+          roomId={selectedRoomId}
+          socket={socket.current}
+          updateLatestMessage={updateLatestMessage}
+        />
+      </div>
     </div>
   );
 }

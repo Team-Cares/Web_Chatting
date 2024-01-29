@@ -80,7 +80,7 @@ export default function ChatDataForm({
 
     return () => {
       socket?.off("readchat", onReadChat);
-      socket?.off("read", readData);
+      // socket?.off("read", readData);
     };
   }, [combinedMessages]);
 

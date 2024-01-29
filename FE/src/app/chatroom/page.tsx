@@ -15,8 +15,14 @@ type ChatRoomProps = {
     user_id: number;
     message: string;
   }) => void;
+  className: string;
 };
-const ChatRoom = ({ roomId, socket, updateLatestMessage }: ChatRoomProps) => {
+const ChatRoom = ({
+  roomId,
+  socket,
+  updateLatestMessage,
+  className,
+}: ChatRoomProps) => {
   const cookies = useCookies();
   const accessToken = cookies.get("accessToken");
 
@@ -59,7 +65,7 @@ const ChatRoom = ({ roomId, socket, updateLatestMessage }: ChatRoomProps) => {
   }, [roomId, socket]);
 
   return (
-    <div className="bg-[#f7f5ed] w-[60%] h-full">
+    <div className={`bg-[#f7f5ed] w-[60%] h-full ${className}`}>
       {data && userdata ? (
         <ChatDataForm
           data={data}

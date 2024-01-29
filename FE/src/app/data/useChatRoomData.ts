@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export const useChatRoomData = (initialRoomId: number) => {
+export const useChatRoomData = (initialRoomId: number | undefined) => {
   const [data, setData] = useState(null);
   const [roomId, setRoomId] = useState(initialRoomId);
 

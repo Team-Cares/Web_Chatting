@@ -22,6 +22,7 @@ type Props = {
     message: string;
   } | null;
   loginUserId: number | null;
+  className: string;
 };
 
 type chatData = {
@@ -41,7 +42,7 @@ type chatData = {
 type contextMenu = {
   mouseX: number;
   mouseY: number;
-  roomId: number | null;
+  roomId: number;
 };
 
 export default function ChattingList({
@@ -50,6 +51,7 @@ export default function ChattingList({
   socket,
   latestNewMessage,
   loginUserId,
+  className,
 }: Props) {
   const [chattingListData, setChattingListData] = useState<ChatList[]>([]);
   const [chattingListLength, setChattingListLength] = useState<number>();
@@ -117,6 +119,7 @@ export default function ChattingList({
                   last_message: latestNewMessage.message,
                 },
                 not_read_messageCnt:
+                  selectedRoomId !== latestNewMessage.room_id &&
                   latestNewMessage.user_id !== loginUserId
                     ? (chat.not_read_messageCnt || 0) + 1
                     : chat.not_read_messageCnt,
@@ -125,7 +128,7 @@ export default function ChattingList({
         )
       );
     }
-  }, [latestNewMessage, loginUserId]);
+  }, [latestNewMessage]);
   const handleChatroomCreated = () => {
     axios
       .get(
@@ -201,8 +204,11 @@ export default function ChattingList({
     );
   };
 
+  console.log(chattingListData);
   return (
-    <div className="bg-[#f3f0e9] p-4 shadow-md w-[40%] h-full pl-8">
+    <div
+      className={`bg-[#f3f0e9] p-4 shadow-md w-[40%] h-full pl-8 ${className} overflow-auto`}
+    >
       <ChatTopbar
         onSearch={handleSearch}
         onChatroomCreated={handleChatroomCreated}
@@ -218,7 +224,7 @@ export default function ChattingList({
               }`}
               onClick={() => handleChatItemClick(chatdata)}
             >
-              {chatdata.Room.Participants[0].User?.profileImgUrl === null ||
+              {chatdata.Room?.Participants[0]?.User?.profileImgUrl === null ||
               undefined ? (
                 <div className="mr-2 flex justify-center items-center">
                   <img
