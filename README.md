@@ -7,15 +7,15 @@
      - 24.01.01 ~ 
 4. 기술 스택
      - FE
-       - 라이브러리
-            ● React 18
+       - 라이브러리<br/>
+            ● React 18<br/>
             ● Next.Js 14.0.4
        - 프레임워크
-              ● dayjs 1.11.10
-              ● react-icons 5.0.0
-              ● socket.io 4.7.4
-              ● typescript 5
-              ● tailwindcss 3.3.0
+              ● dayjs 1.11.10<br/>
+              ● react-icons 5.0.0<br/>
+              ● socket.io 4.7.4<br/>
+              ● typescript 5<br/>
+              ● tailwindcss 3.3.0<br/>
      - BE
          - 라이브러리
          - DB
