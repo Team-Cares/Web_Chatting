@@ -10,7 +10,7 @@
        - 라이브러리<br/>
             ● React 18<br/>
             ● Next.Js 14.0.4
-       - 프레임워크
+       - 프레임워크<br/>
               ● dayjs 1.11.10<br/>
               ● react-icons 5.0.0<br/>
               ● socket.io 4.7.4<br/>
