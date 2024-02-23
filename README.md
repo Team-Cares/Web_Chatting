@@ -17,7 +17,7 @@
     
 <h2>Link</h2> : http://182.230.243.79:3000/
 <h2>아키텍처</h2><br/>
-![프론트 박병근 이력서 pdf  C__Users_박병근_Desktop  - 한PDF 2024-02-23 오후 9_25_14](https://github.com/Dejong1706/ChatGPTClone/assets/75114974/2b771019-3f53-4f99-80c6-fad916b0a050)
+![React Tic-Tac-Toe - Chrome 2024-01-23 오후 7_44_42](https://github.com/Dejong1706/ChatGPTClone/assets/75114974/9e6dbe8a-0f01-4bfc-858c-f3442ec362f1)
 
 
 
