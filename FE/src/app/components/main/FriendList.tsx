@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { FaUserAlt } from "react-icons/fa";
+import { useCallback, useState } from "react";
 import FriendModal from "./FriendModal";
 import { FriendData } from "../../data/frienddata";
 
@@ -11,15 +10,15 @@ export default function FriendList(friends: any) {
 
   const data = friends.friends;
 
-  const handleFriendClick = (friend: FriendData) => {
+  const handleFriendClick = useCallback((friend: FriendData) => {
     setSelectedFriend(friend);
     setIsModalOpen(true);
-  };
+  }, []);
 
-  const handleModalClose = () => {
+  const handleModalClose = useCallback(() => {
     setSelectedFriend(null);
     setIsModalOpen(false);
-  };
+  }, []);
 
   return (
     <div className="mt-8">
