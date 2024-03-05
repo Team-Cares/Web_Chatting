@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { IoPersonAdd } from "react-icons/io5";
 import AddFriend from "./AddFriend";
@@ -14,9 +14,9 @@ export default function Topbar({ onSearch, onFriendAdded }: TopbarProps) {
   const [query, setQuery] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleSearch = () => {
+  const handleSearch = useCallback(() => {
     onSearch(query);
-  };
+  }, [query, onSearch]);
 
   const handleSearchBar = () => {
     setSearch((search) => !search);
