@@ -1,6 +1,6 @@
 # 📖 실시간 채팅 서비스 웹 README
 
-![logo-modified](https://github.com/Dejong1706/MyBlog/assets/75114974/e06dd71e-b7b2-4ed8-8f86-a15d09c27d89)
+<img src="https://github.com/Dejong1706/MyBlog/assets/75114974/e06dd71e-b7b2-4ed8-8f86-a15d09c27d89" width="200" height="400"/>
 
 
 - 배포 URL : https://ohmycode-readme.netlify.app
