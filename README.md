@@ -3,7 +3,7 @@
 <img src="https://github.com/Dejong1706/MyBlog/assets/75114974/e06dd71e-b7b2-4ed8-8f86-a15d09c27d89" width="400" height="400"/>
 
 
-- 배포 URL : [https://ohmycode-readme.netlify.app](http://182.230.243.79:3000/)
+- 배포 URL : 백엔드 개발자의 개인 서버로 배포해둔 상태입니다.
 - Test ID : test@test.com
 - Test PW : a1!
 
@@ -138,6 +138,16 @@
 |----------|----------|
 |![유저1](https://github.com/Dejong1706/MyBlog/assets/75114974/03ab3804-3902-42b2-873e-826c9ce7bfc9)|
 |![유저2](https://github.com/Dejong1706/MyBlog/assets/75114974/f7b67a2b-0bfe-48eb-b9ae-67ea3a1ef8fb)|
+
+### [반응형]
+- 크게 스마트폰, 태블릿, 데스크탑의 사이즈로 구분하여 반응형 디자인으로 표시하였습니다.
+- 너무 작은 스마트폰에서는 레이아웃이 꺠져 보일 수 있습니다.
+
+| 반응형 |
+|----------|
+|![모바일-메인](https://github.com/Dejong1706/MyBlog/assets/75114974/061f3d31-b0f2-403d-8d1d-6f565cf68e73)|
+|![모바일-채팅방](https://github.com/Dejong1706/MyBlog/assets/75114974/6f732cf7-3c3a-4873-9846-697b9716a4f0)|
+|![모바일-채팅방2](https://github.com/Dejong1706/MyBlog/assets/75114974/a015bc39-ccd2-4783-bb2c-973f8b876914)|
 
 <br>
 
