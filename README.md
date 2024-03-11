@@ -129,7 +129,7 @@
 
 | 회원가입 |
 |----------|
-|![로그인](https://github.com/Dejong1706/MyBlog/assets/75114974/930aca85-3bea-484c-9446-ea757f064b3d)|
+|![Web_Chatting - Chrome 2024-03-11 오후 7_18_47](https://github.com/Dejong1706/MyBlog/assets/75114974/8c275de7-6e28-4ad6-9528-e3ae1561ccb7)|
 
 <br>
 
