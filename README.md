@@ -113,7 +113,8 @@
 
 | 초기화면 |
 |----------|
-|![splash]([https://user-images.githubusercontent.com/112460466/210172920-aef402ed-5aef-4d4a-94b9-2b7147fd8389.gif](https://github.com/Dejong1706/MyBlog/assets/75114974/8d6dbd06-4b96-45dc-8141-b9a5b39c67d4))|
+![메인](https://github.com/Dejong1706/MyBlog/assets/75114974/8d6dbd06-4b96-45dc-8141-b9a5b39c67d4)
+
 
 <br>
 
