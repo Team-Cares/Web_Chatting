@@ -24,7 +24,7 @@
 
 | **박병근** | **최형순** |
 | :------: |  :------: |
-| [<img src="https://github.com/Dejong1706/MyBlog/assets/75114974/dc9fa281-1359-4c2c-866b-f426b258ee0a" height=150 width=150> <br/> @Dejong1706](https://github.com/Dejong1706) | [<img src="[https://avatars.githubusercontent.com/u/112460466?v=4](https://github.com/Dejong1706/MyBlog/assets/75114974/e7f1a30e-c52e-417a-98dc-69c46f2110c0)" height=150 width=150> <br/> @HS980924](https://github.com/HS980924) |
+| [<img src="https://github.com/Dejong1706/MyBlog/assets/75114974/dc9fa281-1359-4c2c-866b-f426b258ee0a" height=150 width=150> <br/> @Dejong1706](https://github.com/Dejong1706) | [<img src="https://github.com/Dejong1706/MyBlog/assets/75114974/af7226a4-6147-4e99-a617-63acbf0708b" height=150 width=150> <br/> @HS980924](https://github.com/HS980924) |
 
 </div>
 
