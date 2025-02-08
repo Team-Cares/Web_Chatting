@@ -2,11 +2,6 @@
 
 <img src="https://github.com/Dejong1706/MyBlog/assets/75114974/e06dd71e-b7b2-4ed8-8f86-a15d09c27d89" width="400" height="400"/>
 
-
-- 배포 URL : 백엔드 개발자의 개인 서버로 배포해둔 상태입니다.
-- Test ID : test@test.com
-- Test PW : a1!
-
 <br>
 
 ## 프로젝트 소개
